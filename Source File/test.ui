@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>580</width>
+    <height>820</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>580</width>
+    <height>820</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>812</width>
+    <height>1100</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>8</pointsize>
+    <kerning>true</kerning>
+   </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
+  <property name="tabletTracking">
+   <bool>false</bool>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="maximumSize">
+    <size>
+     <width>3840</width>
+     <height>1920</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="import_file">
+        <property name="minimumSize">
+         <size>
+          <width>220</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>230</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+          <strikeout>false</strikeout>
+          <stylestrategy>PreferDefault</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(213, 248, 255);
+</string>
+        </property>
+        <property name="text">
+         <string>導入</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <family>Microsoft YaHei Light</family>
+            <pointsize>8</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>預設路徑</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="default_path">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="text">
+           <string>C:\Users\klps2\OneDrive\Guitar Tab Active</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QListWidget" name="path_record">
+      <property name="maximumSize">
+       <size>
+        <width>5000</width>
+        <height>6000</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="convert_save">
+        <property name="minimumSize">
+         <size>
+          <width>335</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(224, 255, 219);</string>
+        </property>
+        <property name="text">
+         <string>轉換並儲存</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="rechose">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 226, 226);</string>
+        </property>
+        <property name="text">
+         <string>重新選取</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="topMargin">
+       <number>5</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="dont_delet_webp">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>保留wepb</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QCheckBox" name="save_solo_folder">
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>存至 Solo Fingerstyle 資料夾</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="convert_jpg_check">
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>轉換為jpg</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="create_print_jpg">
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>新增影印用pdf</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="save_acoustic_folder">
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>存至 Acoustic Fingerstyle 資料夾</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="create_browse_pdf">
+        <property name="font">
+         <font>
+          <family>Microsoft JhengHei UI Light</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>新增瀏覽用pdf</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>580</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menuhh">
+    <property name="geometry">
+     <rect>
+      <x>245</x>
+      <y>113</y>
+      <width>127</width>
+      <height>76</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>設定</string>
+    </property>
+    <widget class="QMenu" name="menulanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionTraditional_Chinese"/>
+    </widget>
+    <widget class="QMenu" name="menuFolder_Path">
+     <property name="title">
+      <string>Folder Path</string>
+     </property>
+     <widget class="QMenu" name="menuSolo_Fingerstyle">
+      <property name="title">
+       <string>Solo Fingerstyle</string>
+      </property>
+      <addaction name="actionBrose"/>
+     </widget>
+     <widget class="QMenu" name="menuAcoustic_Fingerstyle">
+      <property name="title">
+       <string>Acoustic Fingerstyle</string>
+      </property>
+      <addaction name="actionBrowse"/>
+     </widget>
+     <widget class="QMenu" name="menuDefault_Path">
+      <property name="title">
+       <string>Default Path</string>
+      </property>
+      <addaction name="actionBrowse_2"/>
+     </widget>
+     <addaction name="menuDefault_Path"/>
+     <addaction name="separator"/>
+     <addaction name="menuAcoustic_Fingerstyle"/>
+     <addaction name="menuSolo_Fingerstyle"/>
+    </widget>
+    <addaction name="menulanguage"/>
+    <addaction name="menuFolder_Path"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>檢視</string>
+    </property>
+    <widget class="QMenu" name="menuBackground_Color">
+     <property name="title">
+      <string>Background Color</string>
+     </property>
+     <addaction name="actionDark"/>
+     <addaction name="actionLight"/>
+     <addaction name="actionDefault"/>
+    </widget>
+    <widget class="QMenu" name="menuPath_Color">
+     <property name="title">
+      <string>Path Color</string>
+     </property>
+     <addaction name="actionDefault_2"/>
+     <addaction name="actionGreen"/>
+     <addaction name="actionRed"/>
+     <addaction name="separator"/>
+     <addaction name="actionHide"/>
+    </widget>
+    <widget class="QMenu" name="menuWindow_Position">
+     <property name="title">
+      <string>Window Position</string>
+     </property>
+     <addaction name="actionDefault_3"/>
+     <addaction name="separator"/>
+     <addaction name="actionFixed_On_Top"/>
+    </widget>
+    <addaction name="menuBackground_Color"/>
+    <addaction name="menuPath_Color"/>
+    <addaction name="separator"/>
+    <addaction name="menuWindow_Position"/>
+   </widget>
+   <addaction name="menuhh"/>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="actionbfcb">
+   <property name="text">
+    <string>bfcb</string>
+   </property>
+  </action>
+  <action name="actionTraditional_Chinese">
+   <property name="text">
+    <string>Traditional Chinese</string>
+   </property>
+  </action>
+  <action name="actionDark">
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="actionDefault">
+   <property name="text">
+    <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionDefault_2">
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionGreen">
+   <property name="text">
+    <string>Green</string>
+   </property>
+  </action>
+  <action name="actionRed">
+   <property name="text">
+    <string>Red</string>
+   </property>
+  </action>
+  <action name="actionHide">
+   <property name="text">
+    <string>Hide</string>
+   </property>
+  </action>
+  <action name="actionBrose">
+   <property name="text">
+    <string>Browse</string>
+   </property>
+  </action>
+  <action name="actionBrowse">
+   <property name="text">
+    <string>Browse</string>
+   </property>
+  </action>
+  <action name="actionBrowse_2">
+   <property name="text">
+    <string>Browse</string>
+   </property>
+  </action>
+  <action name="actionDefault_3">
+   <property name="text">
+    <string>Default</string>
+   </property>
+  </action>
+  <action name="actionFixed_On_Top">
+   <property name="text">
+    <string>Fixed On Top</string>
+   </property>
+  </action>
+  <action name="actionBottom">
+   <property name="text">
+    <string>Bottom</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
