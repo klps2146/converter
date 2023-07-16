@@ -113,7 +113,7 @@ class Ui_MainWindow(object):
         self.dont_delet_webp.setObjectName("dont_delet_webp")
         self.gridLayout.addWidget(self.dont_delet_webp, 0, 1, 1, 1)
         self.save_solo_folder = QtWidgets.QCheckBox(self.centralwidget)
-        font = QtGui.QFont()
+        font = QtGui.QFont() 
         font.setFamily("Microsoft JhengHei UI Light")
         font.setPointSize(10)
         self.save_solo_folder.setFont(font)

@@ -5,8 +5,9 @@ import PdfGenerator
 from PyQt5.QtWidgets import (QApplication, QWidget, QPushButton, QFileDialog)
 
 class Ui_MainWindow(QWidget):
-    def __init__(self):
+    def __init__(self, json_default_path, original_json_data): # (json檔的位置)
         super().__init__()
+        self.output_json_datas=original_json_data
         self.document_type=[] # 檔案格式 格式：[第一組資料的格式, 第二組資料的格式, ...]("normal" / "gif" / "webp") 
         self.file_list_place=0 
         self.files_path=[] # 完整路徑 格式： [ [第一組路徑], [第二組路徑], ...]
@@ -18,6 +19,14 @@ class Ui_MainWindow(QWidget):
         MainWindow.resize(580, 820)
         MainWindow.setMinimumSize(QtCore.QSize(580, 820))
         MainWindow.setMaximumSize(QtCore.QSize(812, 1100))
+
+        MainWindow.setWindowTitle("Jpg To Pdf Generator")
+        # MainWindow.setStyleSheet('''
+        #     background:#111111;
+        #     color:#FFFFFF;
+        #     border : 3px solid gray;
+        # ''')
+
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setKerning(True)
@@ -181,7 +190,7 @@ class Ui_MainWindow(QWidget):
         self.save_solo_folder = QtWidgets.QCheckBox(self.centralwidget)
         font = QtGui.QFont()
         font.setFamily("Microsoft JhengHei UI Light")
-        font.setPointSize(10)
+        font.setPointSize(10) 
         self.save_solo_folder.setFont(font)
         self.save_solo_folder.setObjectName("save_solo_folder")
         self.gridLayout.addWidget(self.save_solo_folder, 3, 1, 1, 1)
@@ -319,7 +328,7 @@ class Ui_MainWindow(QWidget):
         _translate = QtCore.QCoreApplication.translate
 
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.default_path.setText(_translate("MainWindow", "C:\\Users\\klps2\\OneDrive\\Guitar Tab Active"))
+        self.default_path.setText(_translate("MainWindow", self.output_json_datas["default_path"]))
         self.import_file.setText(_translate("MainWindow", "導入"))
         self.label.setText(_translate("MainWindow", "預設路徑"))
         self.convert_save.setText(_translate("MainWindow", "轉換並儲存"))
@@ -327,9 +336,9 @@ class Ui_MainWindow(QWidget):
         self.create_browse_pdf.setText(_translate("MainWindow", "新增瀏覽用pdf"))
         self.convert_jpg_check.setText(_translate("MainWindow", "轉換為jpg"))
         self.dont_delet_webp.setText(_translate("MainWindow", "保留wepb"))
-        self.save_solo_folder.setText(_translate("MainWindow", "存至 Solo Fingerstyle 資料夾"))
+        self.save_solo_folder.setText(_translate("MainWindow", "存至S資料夾(停用)"))
         self.create_print_pdf.setText(_translate("MainWindow", "新增影印用pdf"))
-        self.save_acoustic_folder.setText(_translate("MainWindow", "存至 Acoustic Fingerstyle 資料夾"))
+        self.save_acoustic_folder.setText(_translate("MainWindow", "存至A資料夾(停用)"))
         self.menuhh.setTitle(_translate("MainWindow", "設定"))
         self.menulanguage.setTitle(_translate("MainWindow", "Language"))
         self.menuFolder_Path.setTitle(_translate("MainWindow", "Folder Path"))
@@ -363,10 +372,27 @@ class Ui_MainWindow(QWidget):
     def group_check(self):
         pass
 
+    def json_edit(self):
+        
+        return self.output_json_datas
+
 
     def import_file_button(self):
         self.process_bar_setting(0)
         filename = QFileDialog.getOpenFileNames(self, '開啟檔案', filter='webp (*.webp);;gif(*.gif);;normal (*.jpg *.jpeg *.png)', directory=str(self.default_path.text()))
+        try:
+            new_default_path_list=filename[0][0].split(".")[-2].split("/")
+            del new_default_path_list[-1]
+            del new_default_path_list[-1]
+            new_default_path=''
+            for i in new_default_path_list:
+                new_default_path=new_default_path+i+"/"
+            self.default_path.setText(new_default_path)
+            self.output_json_datas["default_path"]=new_default_path
+            new_default_path=''
+            new_default_path_list=[]
+        except:
+            print(SyntaxWarning)
         if filename[1]=="webp (*.webp)":
             self.files_path.append(filename[0])
             self.document_type.append("webp")
@@ -385,13 +411,10 @@ class Ui_MainWindow(QWidget):
 
     def file_path_list_setting(self):  # 加入至顯示列表中
         for i in self.files_path[self.file_list_place]:
-            print(i)
             ips=".../"+i.split("/")[-2]+"/"+i.split("/")[-1]
             self.path_record.addItem(str(ips)) # 加入至顯示列表中
         else:    
             self.file_list_place+=1
-            print(self.files_path)
-            print(self.file_list_place)
 
     def file_path_list_add(self, datas):
         if type(datas)==str or int or float:
@@ -436,7 +459,6 @@ class Ui_MainWindow(QWidget):
             for i in sorted_list:
                 output_path.append(after_sort[i])
             self.files_path[full_path_place]=output_path
-            print(self.files_path)
 
     def convert_and_save(self): # 主執行序列 (開始轉換按鈕觸發)
         if self.files_path!=[]:
@@ -496,7 +518,7 @@ class Ui_MainWindow(QWidget):
             else:
                 folder_place=-1
 
-        elif datas[2]==0: # 不轉換jpg ==> 轉換jpg  > 產生PDG > 刪除JPG
+        elif datas[2]==0: # 不轉換jpg ==> 轉換jpg  > 產生PDG > 刪除JPG (不可刪除webp 並給予提示)
             folder_place=-1
             for one_path in self.files_path:
                 folder_place+=1
@@ -521,12 +543,12 @@ class Ui_MainWindow(QWidget):
                         PdfGenerator.generate_pdf_printing(folder_name=name_f, pages_path=one_path)
                 
                 for delet_jpg in one_path:
-                    os.remove(str(delet_jpg.split(".")[-2]))
+                    os.remove(str(delet_jpg.split(".")[-2]+".jpg"))
 
-                if datas[3]==False: # 不保留Webp
+                if datas[3]==False: # 不 保留Webp
                     if self.document_type[folder_place]=="webp":
                         for delet_path in one_path:
-                            os.remove(delet_path)
+                            self.file_path_list_add(f"無.jpg時不刪除.webp,移除失敗檔案:{str(delet_path)}")
 
                 elif datas[3]==True:
                     if datas[4]==0:
@@ -579,10 +601,13 @@ class Ui_MainWindow(QWidget):
 
 
 #if __name__ == "__main__":
-def main():
+def main(json_default_path, original_json_datas):
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_MainWindow(json_default_path, original_json_datas)
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec_())
+    app.exec_()
+    json_data=ui.json_edit()
+    return json_data
+

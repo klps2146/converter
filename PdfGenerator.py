@@ -25,7 +25,16 @@ def generate_pdf_printing(folder_name, pages_path, page_size=size_list[1]):
             c.drawImage(f"{i}" ,page_size[1]/2 , 0, width=page_size[1]/2, height=page_size[0])
             c.showPage() # 換頁
     c.save()
-
+    return f"{folder_name}.pdf"
+  
+class from_pdf_to_pic():
+    def __init__():
+        pass
+    def one_page_pdf():
+        # with open()
+        pass
+    def two_pages_pdf():
+        pass
 
 
     
